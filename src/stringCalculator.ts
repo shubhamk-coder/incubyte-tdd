@@ -10,8 +10,14 @@ export function add(numbers: string): number {
     numbers = numbers.split("\n")[1];
   }
 
-  const numberArray = numbers.split(delimiter);
-  const sum = numberArray.reduce((acc, num) => acc + parseInt(num), 0);
+  const numberArray = numbers.split(delimiter).map((num) => parseInt(num));
+
+  const negatives = numberArray.filter((num) => num < 0);
+  if (negatives.length > 0) {
+    throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
+  }
+
+  const sum = numberArray.reduce((acc, num) => acc + num, 0);
 
   return sum;
 }
