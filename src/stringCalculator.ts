@@ -3,9 +3,8 @@ export function add(numbers: string): number {
     return 0;
   }
 
-  if (!numbers.includes(",")) {
-    return parseInt(numbers);
-  }
+  const numberArray = numbers.split(",");
+  const sum = numberArray.reduce((acc, num) => acc + parseInt(num), 0);
 
-  return 0; // placeholder for future tests
+  return sum;
 }
